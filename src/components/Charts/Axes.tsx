@@ -1,5 +1,5 @@
 import React from "react";
-import { Group, Line, Text, useFont, vec } from "@shopify/react-native-skia";
+import { Group, Line, vec } from "@shopify/react-native-skia";
 import { ScaleLinear, ScaleTime } from "d3";
 
 import { Spacing } from "./types";

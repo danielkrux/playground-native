@@ -3,7 +3,7 @@ import { Dimensions } from "react-native";
 
 import { Canvas, Group, RoundedRect } from "@shopify/react-native-skia";
 import { max, scaleBand, scaleLinear } from "d3";
-import { ChartProps, Spacing } from "../types/Chart";
+import { ChartProps } from "./types";
 
 
 const dimensions = Dimensions.get("window");
