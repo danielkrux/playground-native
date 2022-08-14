@@ -1,15 +1,10 @@
 import React from "react";
 import { Dimensions } from "react-native";
+
 import { Canvas, Group, RoundedRect } from "@shopify/react-native-skia";
 import { max, scaleBand, scaleLinear } from "d3";
-import { Margin } from "../types/Chart";
+import { ChartProps, Spacing } from "../types/Chart";
 
-export type ChartProps = {
-  data: any[];
-  width?: number;
-  height?: number;
-  margin?: Margin;
-};
 
 const dimensions = Dimensions.get("window");
 
