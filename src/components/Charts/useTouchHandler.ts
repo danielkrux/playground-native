@@ -4,7 +4,7 @@ import {
   useValue,
   useTouchHandler as useSkiaTouchHandler,
 } from "@shopify/react-native-skia";
-import { Spacing } from "../../types/Chart";
+import { Spacing } from "./types";
 
  const useTouchHandler = (
   x: SkiaMutableValue<number>,

@@ -2,7 +2,7 @@ import React from "react";
 import { Group, Line, Text, useFont, vec } from "@shopify/react-native-skia";
 import { ScaleLinear, ScaleTime } from "d3";
 
-import { Spacing } from "../../types/Chart";
+import { Spacing } from "./types";
 
 export type AxesProps = {
   xScale: ScaleTime<any, any, any> | ScaleLinear<any, any, any>;

@@ -12,10 +12,10 @@ import {
 } from "@shopify/react-native-skia";
 import { curveBasis, extent, line, scaleLinear, scaleTime } from "d3";
 
-import { ChartProps } from "../../types/Chart";
+import { ChartProps } from "./types";
 
 import Axes from "./Axes";
-import { findY } from "../../utils/chart";
+import { findY } from "./utils";
 import useTouchHandler from "./useTouchHandler";
 
 const openSans = require("../../../assets/fonts/OpenSans-Regular.ttf");
@@ -68,10 +68,10 @@ export const LineChart = ({
         <Path style="stroke" path={skPath} strokeWidth={2} color="#6231ff" />
         <Axes
           xScale={xScale}
-          yScale={yScale}
           height={height}
           width={width}
           margin={margin}
+          yScale={yScale}
           tickSize={TICK_SIZE}
         />
         <Circle cx={x} cy={y} r={10} color="red" />
