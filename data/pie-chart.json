@@ -1,0 +1,22 @@
+[
+  {
+    "name": "React Native",
+    "value": 60
+  },
+  {
+    "name": "Flutter",
+    "value": 15
+  },
+  {
+    "name": "Xamarin",
+    "value": 5
+  },
+  {
+    "name": "Cordova",
+    "value": 2
+  },
+  {
+    "name": "Native",
+    "value": 18
+  }
+]

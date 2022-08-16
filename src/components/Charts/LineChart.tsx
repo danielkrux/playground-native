@@ -18,13 +18,6 @@ import Axes from "./Axes";
 import { findY } from "./utils";
 import useTouchHandler from "./useTouchHandler";
 
-const openSans = require("../../../assets/fonts/OpenSans-Regular.ttf");
-
-export type DateTemperaturePoint = {
-  date: string;
-  temperature: number;
-};
-
 const dimensions = Dimensions.get("window");
 
 export const LineChart = ({
@@ -35,8 +28,10 @@ export const LineChart = ({
 }: ChartProps) => {
   const TICK_SIZE = 10;
 
-  const font = useFont(openSans, 16, (e) =>
-    console.error("Could not load font", e)
+  const font = useFont(
+    require("../../../assets/fonts/OpenSans-Regular.ttf"),
+    16,
+    (e) => console.error("Could not load font", e)
   );
 
   const xScale = scaleTime()
@@ -47,7 +42,7 @@ export const LineChart = ({
     .domain(extent(data.map((d) => d.temperature)))
     .range([height - margin.bottom, margin.top]);
 
-  const curvedLine = line<DateTemperaturePoint>()
+  const curvedLine = line<any>()
     .x((d) => xScale(new Date(d.date)))
     .y((d) => yScale(d.temperature))
     .curve(curveBasis)(data);
@@ -60,23 +55,21 @@ export const LineChart = ({
 
   const touchHandler = useTouchHandler(x, width, margin);
 
-  if (!font) return null;
+  // if (!font) return null;
 
   return (
-    <>
-      <Canvas style={{ height, width }} onTouch={touchHandler}>
-        <Path style="stroke" path={skPath} strokeWidth={2} color="#6231ff" />
-        <Axes
-          xScale={xScale}
-          height={height}
-          width={width}
-          margin={margin}
-          yScale={yScale}
-          tickSize={TICK_SIZE}
-        />
-        <Circle cx={x} cy={y} r={10} color="red" />
-        <Text y={height} font={font} text={label} />
-      </Canvas>
-    </>
+    <Canvas style={{ height, width }} onTouch={touchHandler}>
+      <Path style="stroke" path={skPath} strokeWidth={2} color="#6231ff" />
+      <Axes
+        xScale={xScale}
+        height={height}
+        width={width}
+        margin={margin}
+        yScale={yScale}
+        tickSize={TICK_SIZE}
+      />
+      <Circle cx={x} cy={y} r={10} color="red" />
+      {/* <Text y={height} font={font} text={label} /> */}
+    </Canvas>
   );
 };

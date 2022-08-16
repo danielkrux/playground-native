@@ -1,2 +1,2 @@
 export { default as HomeScreen } from "./HomeScreen";
-export { default as ChartScreen } from "./ChartScreen";
+export { BarChartScreen, LineChartScreen, PieChartScreen } from "./ChartScreen";

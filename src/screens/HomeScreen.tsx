@@ -5,7 +5,9 @@ import { HomeScreenButton } from "../components/Home/HomeScreenButton";
 const HomeScreen = () => {
   return (
     <ScrollView>
-      <HomeScreenButton title="Charts" description="Chart examples" route="chart" />
+      <HomeScreenButton title="Line chart" route="LINE_CHART" />
+      <HomeScreenButton title="Bar chart" route="BAR_CHART" />
+      <HomeScreenButton title="Pie chart" route="PIE_CHART" />
     </ScrollView>
   );
 };

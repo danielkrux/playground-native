@@ -1,11 +1,12 @@
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import React, { useCallback } from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { RouteName } from "../../screens/routes";
 
 type Props = {
   title: string;
-  description: string;
-  route: string;
+  description?: string;
+  route: RouteName;
 };
 
 export const HomeScreenButton: React.FC<Props> = ({
@@ -26,7 +27,7 @@ export const HomeScreenButton: React.FC<Props> = ({
     <TouchableOpacity onPress={gotoRoute} style={styles.container}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
+        {description && <Text style={styles.description}>{description}</Text>}
       </View>
       <Text>👉</Text>
     </TouchableOpacity>
