@@ -5,7 +5,6 @@ import { Canvas, Group, RoundedRect } from "@shopify/react-native-skia";
 import { max, scaleBand, scaleLinear } from "d3";
 import { ChartProps } from "./types";
 
-
 const dimensions = Dimensions.get("window");
 
 export const BarChart = ({

@@ -10,13 +10,15 @@ import {
   useFont,
   useValue,
 } from "@shopify/react-native-skia";
-import { curveBasis, extent, line, scaleLinear, scaleTime } from "d3";
+import { curveBasis, extent } from "d3";
+import { line as lineFactory } from "@visx/shape";
+import { scaleLinear, scaleTime } from "@visx/scale";
 
 import { ChartProps } from "./types";
+import { getYForX } from "./math";
+import useTouchHandler from "./useTouchHandler";
 
 import Axes from "./Axes";
-import { findY } from "./utils";
-import useTouchHandler from "./useTouchHandler";
 
 const dimensions = Dimensions.get("window");
 
@@ -29,33 +31,37 @@ export const LineChart = ({
   const TICK_SIZE = 10;
 
   const font = useFont(
-    require("../../../assets/fonts/OpenSans-Regular.ttf"),
+    require("../../assets/fonts/OpenSans-Regular.ttf"),
     16,
     (e) => console.error("Could not load font", e)
   );
 
-  const xScale = scaleTime()
-    .domain(extent(data.map((d) => new Date(d.date))))
-    .range([margin.left, width - margin.right]);
+  const xScale = scaleTime({
+    domain: extent(data.map((d) => new Date(d.date))),
+    range: [margin.left, width - margin.right],
+  });
 
-  const yScale = scaleLinear()
-    .domain(extent(data.map((d) => d.temperature)))
-    .range([height - margin.bottom, margin.top]);
+  const yScale = scaleLinear({
+    domain: extent(data.map((d) => d.temperature)),
+    range: [height - margin.bottom, margin.top],
+  });
 
-  const curvedLine = line<any>()
-    .x((d) => xScale(new Date(d.date)))
-    .y((d) => yScale(d.temperature))
-    .curve(curveBasis)(data);
+  const line = lineFactory<any>({
+    x: (d) => xScale(new Date(d.date)),
+    y: (d) => yScale(d.temperature),
+    curve: curveBasis,
+  });
+  const linePath = line(data);
 
-  const skPath = Skia.Path.MakeFromSVGString(curvedLine);
+  const skPath = Skia.Path.MakeFromSVGString(linePath);
 
   const x = useValue(margin.left);
-  const y = useComputedValue(() => findY(curvedLine, x.current), [x, skPath]);
+  const y = useComputedValue(() => getYForX(skPath.toCmds(), x.current), [x, skPath]);
   const label = useComputedValue(() => String(yScale.invert(y.current)), [y]);
 
   const touchHandler = useTouchHandler(x, width, margin);
 
-  // if (!font) return null;
+  if (!font) return null;
 
   return (
     <Canvas style={{ height, width }} onTouch={touchHandler}>
@@ -69,7 +75,7 @@ export const LineChart = ({
         tickSize={TICK_SIZE}
       />
       <Circle cx={x} cy={y} r={10} color="red" />
-      {/* <Text y={height} font={font} text={label} /> */}
+      <Text y={height} font={font} text={label} />
     </Canvas>
   );
 };

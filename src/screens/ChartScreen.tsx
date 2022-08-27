@@ -4,9 +4,9 @@ import { View } from "react-native";
 import { LineChart } from "../components/Charts/LineChart";
 import { BarChart } from "../components/Charts/BarChart";
 import PieChart from "../components/Charts/PieChart";
-import data from "../../data/temperature.json";
-import data2 from "../../data/bar-chart.json";
-import data3 from "../../data/pie-chart.json";
+import data from "../data/temperature.json";
+import data2 from "../data/bar-chart.json";
+import data3 from "../data/pie-chart.json";
 
 export interface ChartScreenProps {}
 

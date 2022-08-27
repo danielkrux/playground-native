@@ -12,6 +12,7 @@ import { Spacing } from "./types";
   margin: Spacing,
 ) => {
   const offsetX = useValue(0);
+  
   const onTouch = useSkiaTouchHandler({
     onStart: (pos) => {
       offsetX.current = x.current - pos.x;
