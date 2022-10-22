@@ -8,6 +8,7 @@ const HomeScreen = () => {
       <HomeScreenButton title="Line chart" route="LINE_CHART" />
       <HomeScreenButton title="Bar chart" route="BAR_CHART" />
       <HomeScreenButton title="Pie chart" route="PIE_CHART" />
+      <HomeScreenButton title="Buttons" route="BUTTONS" />
     </ScrollView>
   );
 };
